@@ -51,9 +51,42 @@ let currentItem=0
 
 //load initial item
 window.addEventListener("DOMContentLoaded", function(){
-  const item = reviews[currentItem]
+  showPerson(currentItem)  
+})
+
+//show person based on item
+function showPerson(person){
+  const item = reviews[person]
   img.src = item.img
   author.textContent = item.author
   info.textContent = item.text
   job.textContent = item.job
+}
+
+//show next person
+nextbtn.addEventListener("click", function(){
+  currentItem++
+  if(currentItem > reviews.length - 1){
+    currentItem=0
+  }
+  showPerson(currentItem)
 })
+
+//show previous person
+prevbtn.addEventListener("click",function(){
+  currentItem--
+  if(currentItem < 0){
+    currentItem=reviews.length -1
+  }
+  showPerson(currentItem)
+})
+
+//show random person
+randombtn.addEventListener("click", function(){
+  currentItem=Math.floor(Math.random()*reviews.length)
+  //if(currentItem < 0){
+  //  currentItem=reviews.length-1
+  //}
+  showPerson(currentItem)
+})  
+
